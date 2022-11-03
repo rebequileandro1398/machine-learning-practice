@@ -6,8 +6,14 @@ celsius = np.array([1, -10, 0, 21, 13, 23, 50, -30], dtype=float)
 fahrenheit = np.array([33.8, 14, 32, 69.8, 55.4, 73.4, 122, -22], dtype=float)
 
 #layers
-layer = tf.keras.layers.Dense(units=1, input_shape=[1])
-model = tf.keras.Sequential([layer])
+#example single layer
+# layer = tf.keras.layers.Dense(units=1, input_shape=[1])
+# model = tf.keras.Sequential([layer])
+
+hidden_layers_one = tf.keras.layers.Dense(units=3, input_shape=[1])
+hidden_layers_two = tf.keras.layers.Dense(units=3)
+output = tf.keras.layers.Dense(units=1)
+model = tf.keras.Sequential([hidden_layers_one, hidden_layers_two, output])
 
 #compile with the adam optimizer
 history = model.compile(
@@ -16,7 +22,7 @@ history = model.compile(
 )
 #training
 print("training...")
-model.fit(celsius, fahrenheit, epochs=1000, verbose=False)
+model.fit(celsius, fahrenheit, epochs=100, verbose=False)
 print("trained!")
 
 #testing
